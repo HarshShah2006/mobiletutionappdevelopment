@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Books</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #00b0ff 0%, #66e8ff 100%);
+  color: #fff;
+  text-align: center;
+}
+
+/* Top Header Bar */
+.header {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.header button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.header button:hover {
+  transform: scale(1.15);
+}
+
+/* Book container - vertical layout */
+.book-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+}
+
+/* Book card */
+.book-card {
+  background: #fff;
+  color: #000;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.book-card:hover {
+  transform: scale(1.03);
+}
+.book-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* PDF Viewer */
+iframe {
+  width: 100%;
+  height: 90vh;
+  border: none;
+  display: none;
+}
+
+/* Back Button below PDF */
+.back-btn {
+  background: #007ecc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 15px auto;
+  display: none;
+  transition: background 0.3s;
+}
+.back-btn:hover {
+  background: #005fa3;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <button onclick="goBack()" style=" background: linear-gradient(90deg, #00b0ff 0%, #00d5ff 100%); border-radius: 50%; width: 36px; height: 36px;display: flex; justify-content: center; align-items: center;font-size: 18px; cursor: pointer;">&#8592;</button>
+  <h2>E-Books Library</h2>
+  <button onclick="goHome()" style=" background: linear-gradient(90deg, #00b0ff 0%, #00d5ff 100%); border-radius: 50%; width: 36px; height: 36px;display: flex; justify-content: center; align-items: center;font-size: 18px; cursor: pointer;">&#8962;</button>
+</div>
+
+<!-- E-book Cards -->
+<div class="book-container" id="bookContainer">
+  <div class="book-card" onclick="openBook('math.pdf')">
+    <img src="math.jpg" alt="Math Book">
+    <p><b>Mathematics</b></p>
+  </div>
+  <div class="book-card" onclick="openBook('science.pdf')">
+    <img src="science.jpg" alt="Science Book">
+    <p><b>Science</b></p>
+  </div>
+  <div class="book-card" onclick="openBook('english.pdf')">
+    <img src="english.jpg" alt="English Book">
+    <p><b>English</b></p>
+  </div>
+</div>
+
+<!-- PDF Viewer -->
+<iframe id="pdfViewer"></iframe>
+
+<!-- Back Button (visible in PDF view) -->
+<button class="back-btn" id="backBtn" onclick="closeBook()">⬅ Back to Books</button>
+
+<script>
+function openBook(file) {
+  document.getElementById("bookContainer").style.display = "none";
+  const pdfViewer = document.getElementById("pdfViewer");
+  pdfViewer.src = file + "#zoom=56"; // open PDF at 56% zoom
+  pdfViewer.style.display = "block";
+  document.getElementById("backBtn").style.display = "inline-block";
+}
+
+function closeBook() {
+  document.getElementById("pdfViewer").style.display = "none";
+  document.getElementById("backBtn").style.display = "none";
+  document.getElementById("bookContainer").style.display = "flex";
+}
+
+function goHome() {
+  // Change this link to your app's homepage file name (e.g., 'index.html')
+  window.location.href = "index.html";
+}
+
+function goBack() {
+  // Go to the previous page in browser history
+  window.history.back();
+}
+</script>
+
+</body>
+</html>
