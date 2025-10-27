@@ -209,7 +209,7 @@ async function login() {
     localStorage.setItem("loggedInUser", username);
     document.getElementById("loginPage").style.display = "none";
     document.getElementById("mainPage").style.display = "flex";
-    document.getElementById("studentName").textContent = `Welcome, ${username}! Your account has been created.`;
+    document.getElementById("studentName").textContent = `Hi, ${username}`;
     errorMsg.style.display = "none";
   } else {
     errorMsg.style.display = "block";
@@ -248,3 +248,4 @@ closeBtn.onclick = () => (sideMenu.style.left = "-250px");
 
 </body>
 </html>
+
